@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "destination": "https://kith-store-program.bwalves83.chatgpt.site/:path*",
+      "permanent": false
+    }
+  ]
+}
