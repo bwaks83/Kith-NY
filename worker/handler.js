@@ -33,7 +33,12 @@ async function isUnlocked(request, env) {
 
 function isOwner(request, env) {
   const userId = request.headers.get('oai-authenticated-user-id');
-  return Boolean(userId && env.ADMIN_USER_ID && userId === env.ADMIN_USER_ID);
+  const email = request.headers.get('oai-authenticated-user-email')?.trim().toLowerCase();
+  const adminEmail = String(env.ADMIN_EMAIL || '').trim().toLowerCase();
+  return Boolean(
+    (userId && env.ADMIN_USER_ID && userId === env.ADMIN_USER_ID) ||
+    (email && adminEmail && email === adminEmail)
+  );
 }
 
 function setCookie(value, maxAge) {
